@@ -35,13 +35,13 @@ def process():
     input_value = request.form.get('inputField')  # Get the value of the input field
 
     if not input_value or not input_value.startswith("http"):
-        return "Invalid input. Please provide a valid YouTube URL.", 400
+        return render_template('success.html', message="Invalid input. Please provide a valid YouTube URL."), 400
 
     success, message = download_youtube_audio(input_value)
     if success:
-        return message
+        return render_template('success.html', message=message)
     else:
-        return message, 500
+        return render_template('success.html', message=message), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

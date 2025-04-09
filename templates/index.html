@@ -2,21 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>My Web Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Video Downloader</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
   </head>
   <body>
-    <form action="/process" method="POST">
-      <input
-        type="text"
-        id="inputField"
-        name="inputField"
-        placeholder="Add a Link.."
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+      <h1>YouTube Video Downloader</h1>
+      <form
+        action="/process"
+        method="POST"
+        class="form"
+        onsubmit="showLoader()"
+      >
+        <input
+          type="text"
+          id="inputField"
+          name="inputField"
+          placeholder="Enter YouTube Link..."
+          required
+        />
+        <button type="submit">Download</button>
+      </form>
+    </div>
+
+    <!-- Loader -->
+    <div id="loading" class="loading">
+      <div>Downloading..</div>
+      <div class="loader" id="loader">
+        <div></div>
+      </div>
+    </div>
+
+    <script>
+      function showLoader() {
+        // Show the loader when the form is submitted
+        document.getElementById("loading").style.display = "flex";
+        document.getElementById("loader").style.display = "flex";
+      }
+    </script>
   </body>
 </html>
